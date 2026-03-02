@@ -148,30 +148,63 @@ This creates a table named "Sorting Algorithms" with benchmarks for QuickSort an
 
 ## Understanding the Output
 
-### Table Columns
+The report is structured into several sections:
 
-| Column | Description | Example |
-|--------|-------------|---------|
-| **Benchmark** | Name of the benchmark (from ID) | `Recursive/10` |
-| **Mean** | Average time with CI | `1.24 μs [1.20 μs, 1.28 μs]` |
-| **Median** | Median time with CI | `1.24 μs [1.22 μs, 1.26 μs]` |
-| **MAD** | Median Absolute Deviation with CI | `25.00 ns [20.00 ns, 30.00 ns]` |
-| **Throughput** | Elements/bytes per iteration | `1024 bytes/iter` |
-| **Change** | % change from baseline | `🟢 +2.50% [-1.20%, +6.80%]` |
+### 1. Executive Summary
+
+A blockquote at the top with total benchmarks, groups, regressions, improvements, and new benchmarks.
+
+### 2. Alert Boxes
+
+GitHub-flavored `[!CAUTION]` callouts for regressions and `[!TIP]` callouts for improvements.
+
+### 3. Per-Group Sections
+
+Each benchmark group gets:
+
+- **Ranked Overview Table** — Sorted by speed with medals (🥇🥈🥉), relative speedup, stability grade, and change badge
+- **Relative Performance Bar Chart** — Unicode `█░` visualization (in a collapsible `<details>` block)
+- **Detailed Statistics** — Expandable per-benchmark cards with full CI, CI width, throughput, stability, and change analysis
+
+### 4. Cross-Group Leaderboard
+
+All benchmarks ranked globally by mean time.
+
+### 5. Legend & Methodology
+
+Collapsible section explaining all columns, grades, and indicators.
+
+### Stability Grades
+
+Based on Coefficient of Variation (MAD/Median):
+
+| Grade | CV Range | Meaning |
+|-------|----------|---------|
+| 🥇 Excellent | < 0.5% | Near-zero variance |
+| 🥈 Great | 0.5 – 1% | Very low variance |
+| 🥉 Good | 1 – 2% | Acceptable variance |
+| ⚠️ Fair | 2 – 5% | Noticeable variance |
+| 🚨 Unstable | > 5% | High variance, results may be unreliable |
 
 ### Change Indicators
 
-- 🟢 **Green**: Performance is similar or better (absolute change < 5% or negative)
-- 🔴 **Red**: Performance regression detected (change > 5%)
-- ⚪ **White**: No baseline for comparison (first run)
+| Icon | Meaning |
+|------|---------|
+| 🚀 | Major improvement (> 10% faster) |
+| ✅ | Improvement (2 – 10% faster) |
+| ⚡ | Unchanged (< 2% change) |
+| 📊 | Slight regression (2 – 5% slower) |
+| ⚠️ | Regression (5 – 15% slower) |
+| 🔴 | Major regression (> 15% slower) |
+| 🆕 | No baseline for comparison |
 
 ### Time Unit Conversion
 
 The tool automatically converts nanoseconds to more readable units:
 
 - **ns** (nanoseconds): < 1,000 ns
-- **μs** (microseconds): 1,000 - 999,999 ns
-- **ms** (milliseconds): 1,000,000 - 999,999,999 ns
+- **µs** (microseconds): 1,000 – 999,999 ns
+- **ms** (milliseconds): 1,000,000 – 999,999,999 ns
 - **s** (seconds): ≥ 1,000,000,000 ns
 
 ## Advanced Usage
