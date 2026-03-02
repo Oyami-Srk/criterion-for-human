@@ -1,5 +1,7 @@
 # criterion-for-human
 
+[![CI](https://github.com/Oyami-Srk/criterion-for-human/workflows/CI/badge.svg)](https://github.com/Oyami-Srk/criterion-for-human/actions/workflows/ci.yml)
+
 Render criterion JSON output in fancy yet detailed markdown output for mankind.
 
 ## 🎯 Features
@@ -122,9 +124,28 @@ cargo build
 # Run tests
 cargo test
 
+# Run linters
+cargo fmt --all -- --check
+cargo clippy --all-targets --all-features -- -D warnings
+
 # Run with example data
 cat examples/sample_output.json | cargo run --quiet
 ```
+
+### Continuous Integration
+
+This project uses GitHub Actions for CI/CD:
+
+- **CI Workflow** (`ci.yml`): Runs on every push and PR
+  - Builds the project in release mode
+  - Checks code formatting with `rustfmt`
+  - Runs static analysis with `clippy`
+  - Executes all unit tests
+
+- **Benchmark Workflow** (`benchmark.yml`): Runs on PRs
+  - Executes sample benchmarks
+  - Generates a formatted markdown report
+  - Posts the benchmark results as a PR comment
 
 ## 📝 License
 

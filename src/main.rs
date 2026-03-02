@@ -90,11 +90,7 @@ fn format_time_short(value: f64, unit: &str) -> String {
 
 /// Returns the mean estimate in nanoseconds (assumes unit is "ns")
 fn mean_ns(result: &BenchmarkResult) -> f64 {
-    result
-        .mean
-        .as_ref()
-        .map(|m| m.estimate)
-        .unwrap_or(f64::MAX)
+    result.mean.as_ref().map(|m| m.estimate).unwrap_or(f64::MAX)
 }
 
 /// Coefficient of variation: MAD / median (as percentage)
@@ -283,10 +279,7 @@ fn generate_report(results: Vec<BenchmarkResult>) -> String {
         ));
     }
     if no_baseline > 0 {
-        output.push_str(&format!(
-            " · **{}** without baseline",
-            no_baseline
-        ));
+        output.push_str(&format!(" · **{}** without baseline", no_baseline));
     }
     output.push_str("\n\n</blockquote>\n\n");
 
@@ -493,9 +486,7 @@ fn generate_report(results: Vec<BenchmarkResult>) -> String {
                 ));
                 output.push_str(&format!(
                     "  - Median: `{:+.2}%` (95% CI: `{:+.2}%` to `{:+.2}%`)\n",
-                    change.median.estimate,
-                    change.median.lower_bound,
-                    change.median.upper_bound
+                    change.median.estimate, change.median.lower_bound, change.median.upper_bound
                 ));
 
                 // Statistical significance hint
@@ -595,8 +586,12 @@ fn generate_report(results: Vec<BenchmarkResult>) -> String {
     output.push_str("#### Methodology\n\n");
     output.push_str("- All confidence intervals are at the **95%** level\n");
     output.push_str("- **CV** (Coefficient of Variation) = MAD / Median × 100%\n");
-    output.push_str("- Statistical significance is determined by whether the CI for change includes zero\n");
-    output.push_str("- Relative performance (\"vs fastest\") compares mean times within each group\n\n");
+    output.push_str(
+        "- Statistical significance is determined by whether the CI for change includes zero\n",
+    );
+    output.push_str(
+        "- Relative performance (\"vs fastest\") compares mean times within each group\n\n",
+    );
     output.push_str("</details>\n");
 
     output
