@@ -43,6 +43,8 @@ cargo criterion --message-format=json > benchmarks.json
 cat benchmarks.json | criterion-for-human > BENCHMARKS.md
 ```
 
+For detailed usage instructions and examples, see [USAGE.md](USAGE.md).
+
 ### Example Output
 
 See [examples/sample_output.json](examples/sample_output.json) for sample input data.
